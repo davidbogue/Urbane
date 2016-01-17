@@ -20,6 +20,6 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        this.repository.save(new Article("Title", "Article Post", Calendar.getInstance().getTime(), "David Bogue"));
+        this.repository.save(new Article("Title2", "Article Post", Calendar.getInstance().getTime(), "David Bogue"));
     }
 }
