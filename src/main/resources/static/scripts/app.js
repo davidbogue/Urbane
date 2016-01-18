@@ -15,7 +15,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		client({method: 'GET', path: '/api/articles'}).done(response => {
+		client({method: 'GET', path: 'http://localhost:8080/api/articles'}).done(response => {
 			this.setState({articles: response.entity._embedded.articles});
 		});
 	}
@@ -40,7 +40,7 @@ class ArticleList extends React.Component{
 					<tr>
 						<th>Title</th>
 						<th>Date</th>
-						<th>Author</th>
+						<th>Author name</th>
 					</tr>
 				</thead>
 				<tbody>
