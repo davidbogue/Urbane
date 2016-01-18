@@ -1,7 +1,7 @@
 package com.surmize.setup;
 
 import com.surmize.models.Article;
-import com.surmize.models.ArticleRepository;
+import com.surmize.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
