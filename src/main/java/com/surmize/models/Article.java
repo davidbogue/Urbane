@@ -13,6 +13,7 @@ public class Article {
     private @Id @GeneratedValue Long id;
     private String title;
     private String post;
+    private String markdown;
     private Date date;
     private String author;
 
