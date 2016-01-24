@@ -16,23 +16,28 @@ class Home extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {articles: []};
+		this.state = {articles: [],
+		              blogProfile: {}
+		              };
 	}
 
 	componentDidMount() {
 		client({method: 'GET', path: 'http://localhost:8080/api/articles'}).done(response => {
 			this.setState({articles: response.entity._embedded.articles});
 		});
+		client({method: 'GET', path: 'http://localhost:8080/api/blogProfiles/1'}).done(response => {
+        			this.setState({blogProfile: response.entity});
+        		});
 	}
 
 	render() {
 		return (
 			<div>
 				<Navigation/>
-				<Header/>
+				<Header blogProfile={this.state.blogProfile}/>
 				<ArticleList articles={this.state.articles}/>
 				<hr/>
-				<Footer/>
+				<Footer blogProfile={this.state.blogProfile}/>
 			</div>
 		)
 	}
@@ -113,12 +118,12 @@ var Navigation = React.createClass({
                                <span className="icon-bar"></span>
                                <span className="icon-bar"></span>
                            </button>
-                           <a className="navbar-brand" href="index.html">Start Bootstrap</a>
+                           <a className="navbar-brand" href="/"></a>
                        </div>
 
                        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                            <ul className="nav navbar-nav navbar-right">
-                               <li> <a href="index.html">Home</a> </li>
+                               <li> <a href="/">Home</a> </li>
                                <li> <a href="#">About</a> </li>
                                <li> <a href="#">Sign In</a> </li>
                            </ul>
@@ -141,9 +146,9 @@ var Header = React.createClass({
                        <div className="row">
                            <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                                <div className="site-heading">
-                                   <h1>Clean Blog</h1>
+                                   <h1>{this.props.blogProfile.title}</h1>
                                    <hr className="small"/>
-                                   <span className="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                                   <span className="subheading">{this.props.blogProfile.subTitle}</span>
                                </div>
                            </div>
                        </div>
@@ -157,34 +162,52 @@ var Header = React.createClass({
 */
 var Footer = React.createClass({
 	render: function(){
+	    var githubUrl = this.props.blogProfile.githubUrl;
+	    var twitterUrl = this.props.blogProfile.twitterUrl;
+	    var linkedInUrl = this.props.blogProfile.linkedInUrl;
+
 		return <footer>
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                       <ul className="list-inline text-center">
                         <li>
-                          <a href="#">
-                            <span className="fa-stack fa-lg">
-                              <i className="fa fa-circle fa-stack-2x"></i>
-                              <i className="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
+                          <SocialLink socialNetwork="github" socialUrl={githubUrl}/>
                         </li>
                         <li>
-                          <a href="#">
-                            <span className="fa-stack fa-lg">
-                              <i className="fa fa-circle fa-stack-2x"></i>
-                              <i className="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
+                          <SocialLink socialNetwork="twitter" socialUrl={twitterUrl}/>
+                        </li>
+                        <li>
+                          <SocialLink socialNetwork="linkedin" socialUrl={linkedInUrl}/>
                         </li>
                       </ul>
-                      <p className="copyright text-muted">Powered by Urbane </p>
+                      <p className="copyright text-muted">Powered by <a href="https://github.com/davidbogue/Urbane">Urbane</a> </p>
                     </div>
                   </div>
                 </div>
                </footer>
 	}
+});
+
+/*
+ Social Link
+ */
+var SocialLink = React.createClass({
+    render: function(){
+        var socialNetwork = this.props.socialNetwork;
+        var url = this.props.socialUrl;
+
+        var linkHtml;
+        if (url) {
+            linkHtml =<a href={url}>
+                      <span className="fa-stack fa-lg">
+                        <i className="fa fa-circle fa-stack-2x"></i>
+                        <i className={"fa fa-"+socialNetwork+" fa-stack-1x fa-inverse"}></i>
+                      </span>
+                    </a>
+        }
+        return <span>{linkHtml}</span>;
+    }
 });
 
 /*
