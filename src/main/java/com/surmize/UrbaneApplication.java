@@ -14,16 +14,6 @@ public class UrbaneApplication {
         SpringApplication.run(UrbaneApplication.class, args);
     }
 
-//    @Bean
-//    public WebMvcConfigurer corsConfigurer() {
-//        return new WebMvcConfigurerAdapter() {
-//            @Override
-//            public void addCorsMappings(CorsRegistry registry) {
-//                registry.addMapping("/api/**");
-//            }
-//        };
-//    }
-
     //this is a hack to allow cross origin headers.  The commented method above should work but
     //currently only works for MVC registered services and not services based on repositories
     @Bean
@@ -42,4 +32,15 @@ public class UrbaneApplication {
         source.registerCorsConfiguration("/api/**", config);
         return new CorsFilter(source);
     }
+
+//    @Bean
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurerAdapter() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/api/**");
+//            }
+//        };
+//    }
+
 }

@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class BlogProfile {
 
     private @Id
-    Long id = 1l;  // only every one blog profile so hard coded id
+    Long id = 1l;  // only one blog profile so hard coded id
     private String title;
     private String subTitle;
     private String backgroundImage;

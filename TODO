@@ -1,5 +1,10 @@
-use Blog Profile to complete Home Page.
 Create View Article Page.
 Implement paging on home page.
 Create user log in
 lock down services with spring security
+force creation of blog profile and user if one does not exist.
+build screens to edit blog profile
+build screens to edit user
+build screen to add new article
+break up app.js into modules
+Move jquery for nav bar into react component

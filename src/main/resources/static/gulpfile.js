@@ -8,7 +8,6 @@ var notify = require('gulp-notify');
 
 var stylus = require('gulp-stylus');
 var autoprefixer = require('gulp-autoprefixer');
-var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var buffer = require('vinyl-buffer');
 
@@ -80,11 +79,6 @@ function buildScript(file, watch) {
       .on('error', handleErrors)
       .pipe(source(file))
       .pipe(gulp.dest('./build/'))
-      // If you also want to uglify it
-      // .pipe(buffer())
-      // .pipe(uglify())
-      // .pipe(rename('app.min.js'))
-      // .pipe(gulp.dest('./build'))
       .pipe(reload({stream:true}))
   }
 
