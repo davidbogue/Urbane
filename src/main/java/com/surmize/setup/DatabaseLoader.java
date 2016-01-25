@@ -38,7 +38,14 @@ public class DatabaseLoader implements CommandLineRunner {
                 Calendar.getInstance().getTime(),
                 "David Bogue"));
         this.articleRepository.save(new Article("Javascript the Painful Parts",
-                "This is a not so interesting blog post about JavaScript and the most boring parts of it.",
+                "This is a not so interesting blog post about JavaScript and the most boring parts of it. " +
+                    "Here is another sentence and something else.  I want to have a longer paragraph to see how" +
+                    "this looks on the main page.   I may type even more to see what is going on." +
+                    "I may need to change this to something else.  We shall see.\n" +
+                    "```java\n public DatabaseLoader(ArticleRepository repository, BlogProfileRepository blogProfileRepository) {\n" +
+                    "        this.blogProfileRepository= blogProfileRepository;\n" +
+                    "        this.articleRepository = repository;\n" +
+                    "    }\n```",
                 Calendar.getInstance().getTime(),
                 "David Bogue"));
         this.articleRepository.save(new Article("React for Nuclear Physicists",

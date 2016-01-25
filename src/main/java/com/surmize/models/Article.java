@@ -1,6 +1,8 @@
 package com.surmize.models;
 
 import lombok.Data;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,10 +14,12 @@ public class Article {
 
     private @Id @GeneratedValue Long id;
     private String title;
+    @Column(columnDefinition = "TEXT")
     private String post;
     private String markdown;
     private Date date;
     private String author;
+    private String backgroundImage;
 
     public Article(){}
 
