@@ -19,9 +19,6 @@ class Home extends React.Component {
 	}
 
 	componentDidMount() {
-		client({method: 'GET', path: 'http://localhost:8080/api/articles'}).done(response => {
-			this.setState({articles: response.entity._embedded.articles});
-		});
 		client({method: 'GET', path: 'http://localhost:8080/api/blogProfiles/1'}).done(response => {
         			this.setState({blogProfile: response.entity});
         		});
@@ -32,7 +29,7 @@ class Home extends React.Component {
 			<div>
 				<Navigation/>
 				<Header blogProfile={this.state.blogProfile}/>
-				<ArticleList articles={this.state.articles}/>
+				<ArticleList pageNumber={this.props.params.pageNumber}/>
 				<hr/>
 				<Footer blogProfile={this.state.blogProfile}/>
 			</div>

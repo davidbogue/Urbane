@@ -13,8 +13,6 @@ var MarkdownViewer = React.createClass({
 
     rawMarkup: function() {
         var sampleText='test workds \n```java\n public DatabaseLoader(ArticleRepository repository, BlogProfileRepository blogProfileRepository) {\n        this.blogProfileRepository= blogProfileRepository;\n        this.articleRepository = repository;\n    }\n; \n```';
-    console.log(sampleText);
-    console.log(this.props.markdownText);
         var rawMarkup = Marked((this.props.markdownText||''), {sanitize: true});
 //        var rawMarkup = Marked((sampleText||''), {sanitize: true});
         return { __html: rawMarkup };

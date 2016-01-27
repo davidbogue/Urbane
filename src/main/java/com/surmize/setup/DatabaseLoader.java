@@ -55,7 +55,7 @@ public class DatabaseLoader implements CommandLineRunner {
         this.blogProfileRepository.save(new BlogProfile(
                                                 "Blog Title",
                                                 "Blog sub title",
-                                                "http://ppsparents.com/wp-content/uploads/2015/12/cool-star-wars-wallpaper-modern-with-photo-of-cool-star-wallpaper-new-in-wallpapers.jpg",
+                                                "/img/earth-view-space.jpg",
                                                 "https://github.com/davidbogue",
                                                 "https://twitter.com/davidbogue",
                                                 "https://www.linkedin.com/in/david-bogue-119490a")
