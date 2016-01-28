@@ -52,6 +52,9 @@ public class DatabaseLoader implements CommandLineRunner {
                 "This is a not so interesting blog post about JavaScript and the most boring parts of it.",
                 Calendar.getInstance().getTime(),
                 "David Bogue"));
+        for( int i=0; i<20; i++){
+            addArticle("This is a sample post part "+i, "this is a sample post text", "John Jones");
+        }
         this.blogProfileRepository.save(new BlogProfile(
                                                 "Blog Title",
                                                 "Blog sub title",
@@ -61,5 +64,11 @@ public class DatabaseLoader implements CommandLineRunner {
                                                 "https://www.linkedin.com/in/david-bogue-119490a")
                                         );
 
+    }
+
+    private void addArticle(String title, String post, String author){
+        this.articleRepository.save(new Article(title,post,
+                Calendar.getInstance().getTime(),
+                author));
     }
 }

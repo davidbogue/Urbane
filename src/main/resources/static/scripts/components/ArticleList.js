@@ -3,6 +3,9 @@
 */
 
 import React from 'react';
+import ReactDOM  from 'react-dom';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
+
 import ArticleSummary from './ArticleSummary';
 import client from '../client';
 import { Link } from 'react-router';
@@ -17,7 +20,7 @@ class ArticleList extends React.Component{
     }
 
     loadFromServer(page){
-	    client({method: 'GET', path: 'http://localhost:8080/api/articles?size=2&page='+page}).done(response => {
+	    client({method: 'GET', path: 'http://localhost:8080/api/articles?size=10&page='+page}).done(response => {
         			this.setState({articles: response.entity._embedded.articles});
         			var nextPageNumber = (response.entity._links.next ) ? ++page : '';
         			this.setState({nextPage: nextPageNumber})
@@ -29,8 +32,13 @@ class ArticleList extends React.Component{
 	}
 
     componentWillReceiveProps(nextProps) {
-        console.log("got props "+nextProps.pageNumber);
         this.loadFromServer((nextProps.pageNumber || '0'));
+    }
+
+    componentDidUpdate() {
+      if(this.props.pageNumber){
+          ReactDOM.findDOMNode(this).scrollIntoView();;
+      }
     }
 
 	render() {
@@ -39,9 +47,16 @@ class ArticleList extends React.Component{
 		);
 		return (
 			<div className="container">
-                <div className="row">
+			    <div className="row" >
                     <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <CSSTransitionGroup
+                              component="div"
+                              transitionName="example"
+                              transitionEnterTimeout={600}
+                              transitionLeaveTimeout={1}
+                            >
             			{articles}
+            			</CSSTransitionGroup>
                         <ArticlePager nextPage={this.state.nextPage}/>
                     </div>
                 </div>

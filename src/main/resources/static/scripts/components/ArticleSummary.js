@@ -10,7 +10,7 @@ var ArticleSummary = React.createClass({
 		var postSummary = (this.props.article.post.split("\n").shift()+"..." || '');
 		return (
 			<div className="post-preview">
-				<Link to={"article/"+ this.props.article._links.self.href.split('/').pop()}>
+				<Link to={"/article/"+ this.props.article._links.self.href.split('/').pop()}>
 					<h2 className="post-title">
 						{this.props.article.title}
 					</h2>
