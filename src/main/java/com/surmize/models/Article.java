@@ -16,7 +16,6 @@ public class Article {
     private String title;
     @Column(columnDefinition = "TEXT")
     private String post;
-    private String markdown;
     private Date date;
     private String author;
     private String backgroundImage;

@@ -24,6 +24,10 @@ var Article = React.createClass({
         });
 	},
 
+    saveArticle: function(){
+
+    },
+    
     render : function() {
          return(
             <div>

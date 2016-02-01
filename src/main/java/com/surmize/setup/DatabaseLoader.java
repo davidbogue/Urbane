@@ -2,8 +2,10 @@ package com.surmize.setup;
 
 import com.surmize.models.Article;
 import com.surmize.models.BlogProfile;
+import com.surmize.models.User;
 import com.surmize.repository.ArticleRepository;
 import com.surmize.repository.BlogProfileRepository;
+import com.surmize.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,11 +18,13 @@ public class DatabaseLoader implements CommandLineRunner {
 
     private final ArticleRepository articleRepository;
     private final BlogProfileRepository blogProfileRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public DatabaseLoader(ArticleRepository repository, BlogProfileRepository blogProfileRepository) {
+    public DatabaseLoader(ArticleRepository repository, BlogProfileRepository blogProfileRepository, UserRepository userRepository) {
         this.blogProfileRepository= blogProfileRepository;
         this.articleRepository = repository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -63,6 +67,8 @@ public class DatabaseLoader implements CommandLineRunner {
                                                 "https://twitter.com/davidbogue",
                                                 "https://www.linkedin.com/in/david-bogue-119490a")
                                         );
+
+        this.userRepository.save( new User("david@bogue.com","password","David Bogue", "admin") );
 
     }
 

@@ -20,7 +20,7 @@ class ArticleList extends React.Component{
     }
 
     loadFromServer(page){
-	    client({method: 'GET', path: 'http://localhost:8080/api/articles?size=10&page='+page}).done(response => {
+	    client({method: 'GET', path: 'http://localhost:8080/api/articles?sort=id,desc&size=10&page='+page}).done(response => {
         			this.setState({articles: response.entity._embedded.articles});
         			var nextPageNumber = (response.entity._links.next ) ? ++page : '';
         			this.setState({nextPage: nextPageNumber})
