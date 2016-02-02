@@ -17,6 +17,12 @@ var EditArticle = React.createClass({
         return { article: {} };
     },
 
+    // componentWillMount: function(){
+    //     if(!localStorage.getItem('authtoken')){
+    //         this.history.pushState(null, '/');
+    //     }
+    // },
+
     componentDidMount: function() {
         if(this.props.params.articleId){
             client({method: 'GET', path: 'http://localhost:8080/api/articles/'+this.props.params.articleId}).done(response => {
@@ -37,10 +43,11 @@ var EditArticle = React.createClass({
         event.preventDefault();
         this.state.article.title = this.refs.title.value;
         this.state.article.backgroundImage = this.refs.imageurl.value;
+        this.state.article.author = localStorage.getItem('username');
 
         client({
             method: (this.props.params.articleId)?'PUT':'POST',
-            path: 'http://localhost:8080/api/articles/'+this.props.params.articleId,
+            path: 'http://localhost:8080/api/articles/'+(this.props.params.articleId || ''),
             entity: this.state.article,
             headers: {'Content-Type': 'application/json'}
         }).then(response => {
@@ -70,8 +77,7 @@ var EditArticle = React.createClass({
                                 <small>Text can be edited using <a href="http://daringfireball.net/projects/markdown/">Markdown</a></small>
                                 <textarea cols="93" rows="25" className="form-control" required
                                     onChange={this.handleChange} ref="post" />
-                            </div>
-                            <div className="row">
+                                <br/>
                                 <div className="form-group col-xs-12">
                                     <button type="submit" className="btn btn-default">Save</button>
                                 </div>

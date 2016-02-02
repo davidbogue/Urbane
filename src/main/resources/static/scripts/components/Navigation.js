@@ -20,6 +20,10 @@ var Navigation = React.createClass({
     if(this.props.background){
         navStyle={background:this.props.background};
 	  }
+    var addArticle = '';
+    if(this.state.authToken){
+      addArticle = <li> <Link to="/addArticle">New Post</Link> </li>
+    }
 		return <nav className="navbar navbar-default navbar-custom navbar-fixed-top" style={navStyle}>
                    <div className="container-fluid">
 
@@ -28,6 +32,8 @@ var Navigation = React.createClass({
                                <span className="sr-only">Toggle navigation</span>
                                <span className="icon-bar"></span>
                                <span className="icon-bar"></span>
+                               <span className="icon-bar"></span>
+
                            </button>
                            <Link className="navbar-brand" to="/"></Link>
                        </div>
@@ -35,6 +41,7 @@ var Navigation = React.createClass({
                        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                            <ul className="nav navbar-nav navbar-right">
                                <li> <Link to="/">Home</Link> </li>
+                               {addArticle}
                                <li> <AuthenticationLink authtoken={this.state.authToken} signOut={this.signOut}/> </li>
                            </ul>
                        </div>

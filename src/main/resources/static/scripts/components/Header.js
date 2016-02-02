@@ -6,7 +6,8 @@ import React from 'react';
 var Header = React.createClass({
 	render: function() {
 		var headerStyle = {
-              backgroundImage: 'url('+(this.props.blogProfile.backgroundImage || './img/home-bg.jpg')+')'
+              backgroundImage: 'url('+(this.props.blogProfile.backgroundImage || '')+')',
+              backgroundColor: 'gray'
             };
 		return  <header className="intro-header" style={headerStyle}>
                    <div className="container">

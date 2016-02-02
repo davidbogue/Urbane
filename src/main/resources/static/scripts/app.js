@@ -11,6 +11,12 @@ import Article from './components/Article';
 import EditArticle from './components/EditArticle';
 import SignIn from './components/SignIn';
 
+function requireAuth(nextState, replaceState) {
+  if (!localStorage.getItem('authtoken')) {
+    replaceState({ nextPathname: nextState.location.pathname }, '/signin')
+  }
+}
+
 /*
   Routes
 */
@@ -19,8 +25,8 @@ var routes = (
     <Route path="/" component={Home}/>
     <Route path="/page/:pageNumber" component={Home}/>
     <Route path="/article/:articleId" component={Article}/>
-    <Route path="/editarticle/:articleId" component={EditArticle}/>
-    <Route path="/addarticle" component={EditArticle}/>
+    <Route path="/editarticle/:articleId" component={EditArticle} onEnter={requireAuth}/>
+    <Route path="/addarticle" component={EditArticle} onEnter={requireAuth}/>
     <Route path="/signin" component={SignIn}/>
     <Route path="*" component={NotFound}/>
   </Router>

@@ -31,6 +31,7 @@ var SignIn = React.createClass({
         	if(entity.success){
         		this.state.errorMessage='';
         		localStorage.setItem('authtoken',entity.sessionToken);
+        		localStorage.setItem('username',entity.userName);
         		this.history.pushState(null, '/');
         	} else{
         		this.setState({errorMessage: 'Incorrect email or password entered. Please try again.'});
