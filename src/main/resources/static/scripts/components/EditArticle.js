@@ -17,12 +17,6 @@ var EditArticle = React.createClass({
         return { article: {} };
     },
 
-    // componentWillMount: function(){
-    //     if(!localStorage.getItem('authtoken')){
-    //         this.history.pushState(null, '/');
-    //     }
-    // },
-
     componentDidMount: function() {
         if(this.props.params.articleId){
             client({method: 'GET', path: 'http://localhost:8080/api/articles/'+this.props.params.articleId}).done(response => {
@@ -49,7 +43,9 @@ var EditArticle = React.createClass({
             method: (this.props.params.articleId)?'PUT':'POST',
             path: 'http://localhost:8080/api/articles/'+(this.props.params.articleId || ''),
             entity: this.state.article,
-            headers: {'Content-Type': 'application/json'}
+            headers: {'Content-Type': 'application/json',
+                      'auth_token' : localStorage.getItem('authtoken')
+                      }
         }).then(response => {
             return response.entity;
         }).done(entity => {console.log(entity);

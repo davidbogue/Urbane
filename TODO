@@ -1,4 +1,3 @@
-Create user log in
 lock down services with spring security
 force creation of blog profile and user if one does not exist.
 build screens to edit blog profile
@@ -6,3 +5,4 @@ build screens to edit user
 build screen to add new article
 use properties in react for base API url
 Move jquery for nav bar into react component
+add commenting system

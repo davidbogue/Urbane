@@ -18,7 +18,7 @@ class Home extends React.Component {
 		              };
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		client({method: 'GET', path: 'http://localhost:8080/api/blogProfiles/1'}).done(response => {
         			this.setState({blogProfile: response.entity});
         		});

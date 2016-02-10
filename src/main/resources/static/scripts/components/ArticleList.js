@@ -20,6 +20,7 @@ class ArticleList extends React.Component{
     }
 
     loadFromServer(page){
+        console.log('calling get article in load from server');
 	    client({method: 'GET', path: 'http://localhost:8080/api/articles?sort=id,desc&size=10&page='+page}).done(response => {
         			this.setState({articles: response.entity._embedded.articles});
         			var nextPageNumber = (response.entity._links.next ) ? ++page : '';
@@ -27,11 +28,8 @@ class ArticleList extends React.Component{
         		});
 	}
 
-	componentDidMount() {
-        this.loadFromServer((this.props.pageNumber || '0'));
-	}
-
     componentWillReceiveProps(nextProps) {
+        console.log('calling get article componentWillReceiveProps');
         this.loadFromServer((nextProps.pageNumber || '0'));
     }
 
